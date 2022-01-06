@@ -4,7 +4,7 @@
 # 2>/dev/null silences errors
 # $FNAME is made to name the directory for the given instance
 
-# // TODO `mkdir` `data_time` & use directory to save the output
+# // TODO `mkdir` `date_time` & use directory to save the output
 
 # @param FNAME outputs date in mdy_HM format
 FNAME=$(date +%m%d%y_%H%M)

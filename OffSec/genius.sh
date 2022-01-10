@@ -16,7 +16,49 @@ mkdir $HOME/genius/$FNAME # Create a folder for storing the output
 echo Output Folder Location: $HOME/genius/$FNAME  # Be nice and tell the user
 cd $HOME/genius/$FNAME
 
-# TODO Make Use Of Argument Parser
+# ! TODO Make Use Of Argument Parser
+# TODO Argument Parser Help Menu
+
+# * Nmap, Wfuzzer, ZAPROXY, Nikto, nslookup, curl
+
+HELP () {
+
+echo -e "
+genius v0.1 (https://github.com/aatharvauti/scripts)
+
+{} required
+[] optional
+<> specification
+
+Usage: genius [Space-Separated Options] {Target Specification}
+
+-G  Genius Mode
+    Automatically gets the shit done!
+
+-w  If the target has a web server running
+
+    -e  Add the IP to /etc/resolv.conf (requires an argument with valid URL)
+    -l  Run Nslookup
+    -r  Reverse IP Lookup
+    -n  Run Nikto scan
+    -f  Run WFuzzer
+
+-m  If the target is using Microsoft Windows
+
+
+TARGET SPECIFICATION:
+    Can pass IP addresses, hostnames, networks, etc.
+    Ex: example.com, example.com/24, 192.168.0.1; 10.0.0-255.1-254
+    -iL <inputfilename>: Input from list of hosts/networks
+    -iR <num hosts>: Choose random targets
+    --exclude <host1[,host2][,host3],...>: Exclude hosts/networks
+    --excludefile <exclude_file>: Exclude list from file
+
+"
+
+}
+
+HELP
 # TODO IF Ports `80, 443, 8000, 8080` THEN  use ZAPROXY & Nikto Scan, Wfuzzer, curl robots.txt
 # TODO ADD to `/etc/hosts`
 # TODO ADD Nmap script engine

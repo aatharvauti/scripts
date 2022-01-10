@@ -19,7 +19,7 @@ cd $HOME/genius/$FNAME
 # ! TODO Make Use Of Argument Parser
 # TODO Argument Parser Help Menu
 
-# * Nmap, Wfuzzer, ZAPROXY, Nikto, nslookup, curl
+# // Nmap, Wfuzzer, ZAPROXY, Nikto, nslookup, curl
 
 HELP () {
 
@@ -57,6 +57,39 @@ TARGET SPECIFICATION:
 "
 
 }
+
+# TODO Argument Parser Switch Case
+
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -w|--web)
+            TARGET="$2"
+            shift # past argument
+            shift # past value
+            nmap -sV ${TARGET} > $HOME/genius/$FNAME/nmapsv.txt
+            ;;
+        -*|--*)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            POSITIONAL_ARGS+=("$1") # save positional arg
+            shift # past argument
+            ;;
+    esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+
+echo "TARGET: ${TARGET}"
+
+if [[ -n $1 ]]; then
+    echo "Last line of file specified as non-opt/last argument:"
+    tail -1 "$1"
+fi
+
 
 HELP
 # TODO IF Ports `80, 443, 8000, 8080` THEN  use ZAPROXY & Nikto Scan, Wfuzzer, curl robots.txt
